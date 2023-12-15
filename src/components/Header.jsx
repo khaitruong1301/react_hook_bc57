@@ -20,7 +20,29 @@ const Header = () => {
                             <NavLink className="dropdown-item" to="/use-state-demo">UseState</NavLink>
                             <NavLink className="dropdown-item" to="/use-state-change-profile">UseState change profile</NavLink>
                             <NavLink className="dropdown-item" to="/use-effect-didmount">UseEffect Didmount</NavLink>
-                        </div>
+                            <NavLink className="dropdown-item" to="/use-effect-didupdate">UseEffect didupdate</NavLink>
+                            <NavLink className="dropdown-item" to="/use-effect-unmount">UseEffect unount</NavLink>
+                            <NavLink className="dropdown-item" to="/use-callback">Use callback</NavLink>
+                            <NavLink className="dropdown-item" to="/use-memo">Use memo</NavLink>
+                            <NavLink className="dropdown-item" to="/use-ref">Use ref</NavLink>
+                            </div>
+                    </li>
+                    <li className="nav-item dropdown">
+                        <a className="nav-link dropdown-toggle" href="#" id="dropdownId" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Redux</a>
+                        <div className="dropdown-menu" aria-labelledby="dropdownId">
+                            <NavLink className="dropdown-item" to="/use-redux-demo-chat">Chat demo</NavLink>
+                            <NavLink className="dropdown-item" to="/use-redux-demo-change-font-size">Change font size demo</NavLink>
+                            <NavLink className="dropdown-item" to="/use-redux-crud">CRUD Product (Redux)</NavLink>
+                            
+                            </div>
+                    </li>
+                    <li className="nav-item dropdown">
+                        <a className="nav-link dropdown-toggle" href="#" id="dropdownId" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Lib hook</a>
+                        <div className="dropdown-menu" aria-labelledby="dropdownId">
+                            <NavLink className="dropdown-item" to="/use-formik">formik</NavLink>
+                            
+                            
+                            </div>
                     </li>
                 </ul>
                 <form className="d-flex my-2 my-lg-0">
