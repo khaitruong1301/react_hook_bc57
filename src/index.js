@@ -18,7 +18,6 @@ import HookUseCallBack from './pages/hooks/EXHookUseCallBack/HookUseCallBack';
 import EXHookUseMemo from './pages/hooks/EXHookUseMemo/EXHookUseMemo';
 import EXHookUseRef from './pages/hooks/EXHookUseRef/EXHookUseRef';
 import EXHookFormik from './pages/hooks/EXHookFormik/EXHookFormik';
-<<<<<<< HEAD
 import Profile from './pages/Profile';
 import ForgotPassword from './pages/ForgotPassword';
 import Login from './pages/Login';
@@ -26,10 +25,8 @@ import Detail from './pages/Detail'
 import Search from './pages/Search';
 import TrangChu from './pages/TrangChu';
 import AntDemo from './pages/AntDemo';
-=======
 import TableAntd from './pages/TableAntd';
 import ProductManagement from './pages/ProductManagement';
->>>>>>> master
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
