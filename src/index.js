@@ -18,6 +18,8 @@ import HookUseCallBack from './pages/hooks/EXHookUseCallBack/HookUseCallBack';
 import EXHookUseMemo from './pages/hooks/EXHookUseMemo/EXHookUseMemo';
 import EXHookUseRef from './pages/hooks/EXHookUseRef/EXHookUseRef';
 import EXHookFormik from './pages/hooks/EXHookFormik/EXHookFormik';
+import TableAntd from './pages/TableAntd';
+import ProductManagement from './pages/ProductManagement';
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
@@ -38,6 +40,8 @@ root.render(
           <Route path='use-memo' element={<EXHookUseMemo />}></Route>
           <Route path='use-ref' element={<EXHookUseRef />}></Route>
           <Route path='use-formik' element={<EXHookFormik />}></Route>
+          <Route path='table-antd' element={<TableAntd />}></Route>
+          <Route path='product-management' element={<ProductManagement />}></Route>
 
           <Route path='*' element={<Navigate to='' />} ></Route>
 

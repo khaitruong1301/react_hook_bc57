@@ -14,6 +14,12 @@ const Header = () => {
                     <li className="nav-item">
                         <a className="nav-link" href="#">Link</a>
                     </li>
+                    <li className="nav-item">
+                        <NavLink className="nav-link" to="/table-antd">Table antd</NavLink>
+                    </li>
+                    <li className="nav-item">
+                        <NavLink className="nav-link" to="/product-management">Product mangement</NavLink>
+                    </li>
                     <li className="nav-item dropdown">
                         <a className="nav-link dropdown-toggle" href="#" id="dropdownId" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Hooks</a>
                         <div className="dropdown-menu" aria-labelledby="dropdownId">
@@ -25,6 +31,7 @@ const Header = () => {
                             <NavLink className="dropdown-item" to="/use-callback">Use callback</NavLink>
                             <NavLink className="dropdown-item" to="/use-memo">Use memo</NavLink>
                             <NavLink className="dropdown-item" to="/use-ref">Use ref</NavLink>
+
                             </div>
                     </li>
                     <li className="nav-item dropdown">
