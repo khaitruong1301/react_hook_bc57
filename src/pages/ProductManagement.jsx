@@ -1,44 +1,47 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { Button, Space, Table } from 'antd';
 import { NavLink } from 'react-router-dom';
+import { useDispatch, useSelector } from 'react-redux';
+import axios from 'axios';
+import { getAllProductApiAction, getAllProductAsyncThunkAction, setArrayProductAction } from '../redux/Reducers/ProductReducer';
 
 //Dữ liệu bên ngoài component
-const data = [
-  {
-    "id": 1,
-    "name": "Adidas Prophere",
-    "alias": "adidas-prophere",
-    "price": 350,
-    "description": "The adidas Primeknit upper wraps the foot with a supportive fit that enhances movement.\r\n\r\n",
-    "size": "[36,37,38,39,40,41,42]",
-    "shortDescription": "The midsole contains 20% more Boost for an amplified Boost feeling.\r\n\r\n",
-    "quantity": 995,
-    "deleted": false,
-    "categories": "[{\"id\":\"ADIDAS\",\"category\":\"ADIDAS\"},{\"id\":\"MEN\",\"category\":\"MEN\"},{\"id\":\"WOMEN\",\"category\":\"WOMEN\"}]",
-    "relatedProducts": "[2,3,5]",
-    "feature": true,
-    "image": "https://shop.cyberlearn.vn/images/adidas-prophere.png"
-  },
-  {
-    "id": 2,
-    "name": "Adidas Prophere Black White",
-    "alias": "adidas-prophere-black-white",
-    "price": 450,
-    "description": "The adidas Primeknit upper wraps the foot with a supportive fit that enhances movement.\r\n\r\n",
-    "size": "[36,37,38,39,40,41,42]",
-    "shortDescription": "The midsole contains 20% more Boost for an amplified Boost feeling.\r\n\r\n",
-    "quantity": 990,
-    "deleted": false,
-    "categories": "[{\"id\":\"ADIDAS\",\"category\":\"ADIDAS\"},{\"id\":\"MEN\",\"category\":\"MEN\"},{\"id\":\"WOMEN\",\"category\":\"WOMEN\"}]",
-    "relatedProducts": "[1,4,6]",
-    "feature": false,
-    "image": "https://shop.cyberlearn.vn/images/adidas-prophere-black-white.png"
-  }
-];
+
 const ProductManagement = () => {
   //Nội dung trong component
   const [filteredInfo, setFilteredInfo] = useState({});
   const [sortedInfo, setSortedInfo] = useState({});
+  //Lấy dữ liệu từ redux về
+  const { arrProduct } = useSelector(state => state.productReducer)
+  const dispatch = useDispatch();
+  const getAllProduct = async () => {
+    //Sau khi có giá trị từ api thì dispatch giá trị lên reducer
+    // const res = await axios({
+    //   url:'https://shop.cyberlearn.vn/api/Product',
+    //   method:'GET'
+    // });
+    // const action = setArrayProductAction(res.data.content);
+    /*
+      action-thường: {type:'',payload: ...}
+      action-thunk: (dispatch) => {
+        //xử lý abc để có dữ liệu và dùng dispatch đưa lên redux
+      }
+    */
+    //Cách 1: create action thunk (tự code)
+    const action = getAllProductApiAction();
+    dispatch(action)
+    //Cách 2: create asynction (thư viện)
+    // const action = getAllProductAsyncThunkAction();
+    // dispatch(action);
+
+  }
+
+  useEffect(() => {
+    //Gọi api
+    getAllProduct()
+
+  }, [])
+
   const handleChange = (pagination, filters, sorter) => {
     console.log('Various parameters', pagination, filters, sorter);
     setFilteredInfo(filters);
@@ -49,12 +52,33 @@ const ProductManagement = () => {
     {
       title: 'id', //Tiêu đề của từng column
       dataIndex: 'id',
-      name: 'id'
+      name: 'id',
+      defaultSortOrder: 'descend',
+      sorter: (a, b) => a.id - b.id
     },
     {
       title: 'name', //Tiêu đề của từng column
       dataIndex: 'name',
-      name: 'name'
+      name: 'name',
+      defaultSortOrder: 'descend',
+      sorter: (a, b) => a.name.length - b.name.length,
+      filters: [
+        {
+          text: 'Joe',
+          value: 'Joe',
+        },
+        {
+          text: 'Category 1',
+          value: 'Category 1',
+        },
+        {
+          text: 'Category 2',
+          value: 'Category 2',
+        },
+      ],
+      filterMode: 'tree',
+      filterSearch: true,
+      onFilter: (value, record) => record.name.startsWith(value)
     },
     {
       title: 'image', //Tiêu đề của từng column
@@ -85,17 +109,18 @@ const ProductManagement = () => {
       title: 'Action',
       dataIndex: 'action',
       name: 'action',
-      render: (text,record,index)=> {
+      render: (text, record, index) => {
         return <div>
-            <NavLink to={`/detail/${record.id}`}>View detail</NavLink>
+          <NavLink to={`/detail/${record.id}`}>View detail</NavLink>
         </div>
       }
+
     }
   ];
   return (
     <div className="container">
       <h3>Product mangement </h3>
-      <Table columns={columns} dataSource={data} onChange={handleChange} />
+      <Table columns={columns} dataSource={arrProduct} onChange={handleChange} />
     </div>
   );
 }
