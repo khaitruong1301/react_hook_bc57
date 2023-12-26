@@ -1,23 +1,20 @@
 import React from 'react'
 import {useFormik} from 'formik'
 import { useNavigate } from 'react-router-dom'
+import axios from 'axios'
+import { loginApiAction } from '../redux/Reducers/UserReducer'
+import {useDispatch} from 'react-redux'
 const Login = () => {
-
-  const navigate = useNavigate()
+  const navigate = useNavigate();
+  const dispatch = useDispatch()
   const frmLogin = useFormik({
     initialValues:{
       email:'',
       password:''
     },
-    onSubmit: (userLogin) =>{
-      console.log(userLogin)
-      //Xử lý đăng nhập
-      if(userLogin.email === 'admin' && userLogin.password == '123'){
-        navigate('/profile')
-      }else {
-        alert('email or password is invalid');
-        navigate('/forgot-pass')
-      }
+    onSubmit: async (userLogin) =>{
+       const action = loginApiAction(userLogin)
+       dispatch(action)
     }
   }) 
   return (
