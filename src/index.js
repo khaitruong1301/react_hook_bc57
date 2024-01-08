@@ -31,7 +31,10 @@ import ProductManagement from './pages/ProductManagement';
 import {createBrowserHistory} from 'history'
 import DemoHOC from './HOC/DemoHOC';
 import DemoContainerComponent from './HOC/ContainerComponent/DemoContainerComponent';
-
+import DrawerComponent from './HOC/DrawerComponent/DrawerComponent';
+import DemoTestDrawer from './pages/DemoTestDrawer';
+import DeviceTemplate from './templates/DeviceTemplate';
+import HomeMobile from './pages/HomeMobile';
 
 
 //history giúp chuyển hướng trang
@@ -40,14 +43,13 @@ export const history = createBrowserHistory()
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 
-
-
 root.render(
   <Provider store={store}>
     <HistoryRouter history={history}>
+      <DrawerComponent />
       <Routes>
         <Route path='' element={<HomeTemplate />}>
-          <Route index element={<Home />} />
+          <Route index element={<DeviceTemplate Component={<Home />} MobileComponent={<HomeMobile />} />}></Route>
           <Route path='use-state-demo' element={<UseStateDemo />}></Route>
           <Route path='use-state-change-profile' element={<ChangeProfile />}></Route>
           <Route path='use-effect-didmount' element={<UseEffect_DidMount />}></Route>
@@ -74,7 +76,7 @@ root.render(
 
           <Route path='hoc' element={<DemoHOC />}></Route>
           <Route path='container-component' element={<DemoContainerComponent />}></Route>
-
+          <Route path='test-drawer' element={<DemoTestDrawer />}></Route>
 
           <Route path='*' element={<Navigate to='' />} ></Route>
 

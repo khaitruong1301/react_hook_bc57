@@ -46,6 +46,9 @@ const Header = () => {
                         <NavLink className="nav-link" to="antd-demo">Antd demo</NavLink>
                     </li>
                     <li className="nav-item">
+                        <NavLink className="nav-link" to="test-drawer">Test Drawer</NavLink>
+                    </li>
+                    <li className="nav-item">
                         <NavLink className="nav-link" to="hoc">HOC</NavLink>
                     </li>
                     <li className="nav-item">

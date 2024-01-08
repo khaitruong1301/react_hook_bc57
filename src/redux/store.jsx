@@ -4,6 +4,7 @@ import FontSizeReducer from './Reducers/FontSizeReducer'
 import CRUDProductReducer from './Reducers/CRUDProductReducer'
 import ProductReducer from './Reducers/ProductReducer'
 import UserReducer from './Reducers/UserReducer'
+import DrawerReducer from './Reducers/DrawerReducer'
 
 export const store = configureStore({
     reducer:{
@@ -12,6 +13,7 @@ export const store = configureStore({
         fontSizeReducer:FontSizeReducer,
         crudProductReducer:CRUDProductReducer,
         productReducer:ProductReducer,
-        userReducer:UserReducer
+        userReducer:UserReducer,
+        drawerReducer:DrawerReducer
     }
 })
