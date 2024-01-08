@@ -1,9 +1,27 @@
 import React from 'react'
-import {NavLink} from 'react-router-dom'
+import {NavLink,useSearchParams} from 'react-router-dom'
 import {useSelector} from 'react-redux'
+import {useFormik} from 'formik'
+import {history} from '../index'
 const Header = () => {
-
+    // const [searchParam,setSearchParam] = useSearchParams()
     const {userLogin} = useSelector(state =>state.userReducer)
+
+    const frm = useFormik({
+        initialValues:{
+            keyword: ''
+        },
+        onSubmit:({keyword}) => {
+            history.push(`/search?keyword=${keyword}`)
+            //Đưa keyword lên url
+            // setSearchParam({
+            //     // keyword:keyword,
+            //     keyword
+            // })
+        }
+    })
+
+
     console.log(userLogin)
     //bs5-navbar-background
     return (
@@ -26,7 +44,12 @@ const Header = () => {
                     </li>
                     <li className="nav-item">
                         <NavLink className="nav-link" to="antd-demo">Antd demo</NavLink>
-
+                    </li>
+                    <li className="nav-item">
+                        <NavLink className="nav-link" to="hoc">HOC</NavLink>
+                    </li>
+                    <li className="nav-item">
+                        <NavLink className="nav-link" to="/container-component">Container component</NavLink>
                     </li>
                     <li className="nav-item">
                         <NavLink className="nav-link" to="/table-antd">Table antd</NavLink>
@@ -45,7 +68,6 @@ const Header = () => {
                             <NavLink className="dropdown-item" to="/use-callback">Use callback</NavLink>
                             <NavLink className="dropdown-item" to="/use-memo">Use memo</NavLink>
                             <NavLink className="dropdown-item" to="/use-ref">Use ref</NavLink>
-
                             </div>
                     </li>
                     <li className="nav-item dropdown">
@@ -61,14 +83,12 @@ const Header = () => {
                         <a className="nav-link dropdown-toggle" href="#" id="dropdownId" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Lib hook</a>
                         <div className="dropdown-menu" aria-labelledby="dropdownId">
                             <NavLink className="dropdown-item" to="/use-formik">formik</NavLink>
-                            
-                            
                             </div>
                     </li>
                 </ul>
-                <form className="d-flex my-2 my-lg-0">
-                    <input className="form-control me-sm-2" type="text" placeholder="Search" />
-                    <button className="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
+                <form onSubmit={frm.handleSubmit} className="d-flex my-2 my-lg-0">
+                    <input name="keyword" onChange={frm.handleChange} className="form-control me-sm-2" type="text" placeholder="Search" />
+                    <button  className="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
                 </form>
             </div>
         </nav>

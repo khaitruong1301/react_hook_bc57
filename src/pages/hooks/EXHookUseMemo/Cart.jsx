@@ -13,7 +13,7 @@ function Cart(props) {
                 </thead>
                 <tbody>
                     {
-                        props.cart.map((item, index) => {
+                        props.cart?.map((item, index) => {
                             return <tr key={index}>
                                 <td>{item.id}</td>
                                 <td>{item.name}</td>
